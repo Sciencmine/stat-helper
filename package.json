@@ -1,0 +1,49 @@
+{
+	"name": "stat-helper",
+	"version": "0.1.0",
+	"description": "A Tool for Statistics Calculations",
+	"productName": "Statistics Helper",
+	"cordovaId": "tech.sciencmine.stathelper.app",
+	"capacitorId": "",
+	"author": "sciencmine",
+	"private": true,
+	"scripts": {
+		"start": "quasar d",
+		"build": "quasar b",
+		"clean": "quasar c",
+		"lint": "eslint --ext .js,.vue --ignore-path .gitignore ./",
+		"fix": "npm run lint -- --fix",
+		"icon-gen": "icongenie g -p icongenie-profile.json",
+		"icon-ver": "icongenie v -p icongenie-profile.json"
+	},
+	"dependencies": {
+		"@quasar/extras": "^1.0.0",
+		"axios": "^0.18.1",
+		"mathjs": "^7.0.1",
+		"quasar": "^1.0.0",
+		"vue-i18n": "^8.0.0"
+	},
+	"devDependencies": {
+		"@quasar/app": "^1.0.0",
+		"@quasar/icongenie": "^2.3.0",
+		"babel-eslint": "^10.0.1",
+		"eslint": "^6.8.0",
+		"eslint-config-lux": "0.0.7",
+		"eslint-loader": "^3.0.3",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-node": "^11.0.0",
+		"eslint-plugin-promise": "^4.0.1",
+		"eslint-plugin-vue": "^6.1.2"
+	},
+	"engines": {
+		"node": ">= 10.18.1",
+		"npm": ">= 6.13.4",
+		"yarn": ">= 1.21.1"
+	},
+	"browserslist": [
+		"last 1 version, not dead, ie >= 11"
+	],
+	"resolutions": {
+		"@babel/parser": "7.7.5"
+	}
+}

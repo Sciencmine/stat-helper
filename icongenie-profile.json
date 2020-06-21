@@ -1,0 +1,16 @@
+{
+	"params": {
+		"skipTrim": false,
+		"quality": "12",
+		"icon": "src/statics/icons/favicon.png",
+		"padding": [
+			0,
+			0
+		],
+		"include": [
+			"spa",
+			"pwa"
+		]
+	},
+	"assets": []
+}

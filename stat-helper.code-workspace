@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"camelcase",
+			"sciencmine",
+			"editorconfig",
+			"stathelper",
+			"icongenie",
+			"browserslist",
+			"vuex",
+			"roboto",
+			"bignumber",
+			"msapplication",
+			"vetur"
+		],
+		"vetur.format.defaultFormatter.js": "prettier-eslint",
+		"vetur.format.options.tabSize": 4,
+		"vetur.format.options.useTabs": true,
+		"vetur.completion.tagCasing": "initial",
+		"vetur.validation.template": false,
+		"editor.detectIndentation": false,
+		"editor.insertSpaces": false,
+		"vetur.format.defaultFormatter.html": "js-beautify-html",
+		"importCost.timeout": 30000
+	}
+}

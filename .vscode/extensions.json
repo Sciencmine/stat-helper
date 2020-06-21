@@ -1,0 +1,27 @@
+{
+	"recommendations": [
+		"christian-kohler.npm-intellisense",
+		"christian-kohler.path-intellisense",
+		"codezombiech.gitignore",
+		"coenraads.bracket-pair-colorizer-2",
+		"dbaeumer.vscode-eslint",
+		"eamodio.gitlens",
+		"ecmel.vscode-html-css",
+		"editorconfig.editorconfig",
+		"eg2.vscode-npm-script",
+		"formulahendry.auto-close-tag",
+		"formulahendry.auto-rename-tag",
+		"mkxml.vscode-filesize",
+		"mgmcdermott.vscode-language-babel",
+		"michelemelluso.code-beautifier",
+		"octref.vetur",
+		"streetsidesoftware.code-spell-checker",
+		"syler.sass-indented",
+		"visualstudioexptteam.vscodeintellicode"
+	],
+	"unwantedRecommendations": [
+		"hookyqr.beautify",
+		"dbaeumer.jshint",
+		"ms-vscode.vscode-typescript-tslint-plugin"
+	]
+}
