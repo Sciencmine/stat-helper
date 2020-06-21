@@ -1,0 +1,4 @@
+/*
+ *Export function someGetter (state) {
+ *}
+ */

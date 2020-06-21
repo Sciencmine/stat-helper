@@ -1,0 +1,4 @@
+/*
+ *Export function someAction (context) {
+ *}
+ */
