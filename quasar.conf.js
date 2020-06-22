@@ -7,7 +7,7 @@ module.exports = function (/* Ctx */) {
 
 		supportTS: false,
 
-		boot: ["i18n"],
+		boot: ["i18n", "deepCopy"],
 
 		css: ["app.sass"],
 
@@ -46,7 +46,7 @@ module.exports = function (/* Ctx */) {
 			plugins: []
 		},
 
-		animations: [],
+		animations: "all",
 
 		ssr: { pwa: false },
 

@@ -5,3 +5,7 @@ export function updateDrawerOpenness(state, opened) {
 export function updateTabs(state, tabs) {
 	state.tabs = tabs;
 }
+
+export function updateCopyPopupVisibility(state, visible) {
+	state.copyPopupVisible = visible;
+}

@@ -19,7 +19,7 @@
 							color="accent"
 							icon="autorenew"
 							label="Restore"
-							@click="data = defaultData.slice()"
+							@click="restoreData"
 						/>
 						<q-btn
 							rounded
@@ -125,132 +125,38 @@
 				/>
 				<q-card-section>
 					<q-list separator>
-						<q-item>
-							<q-item-section class="non-selectable text-h6">
-								Count
-							</q-item-section>
-							<q-item-section>
-								<q-input
-									v-model="count"
-									readonly
-									rounded
-									outlined
-									hide-bottom-space
-									item-aligned
-								/>
-							</q-item-section>
-						</q-item>
-						<q-item>
-							<q-item-section class="non-selectable text-h6">
-								Sum
-							</q-item-section>
-							<q-item-section>
-								<q-input
-									v-model="sum"
-									readonly
-									rounded
-									outlined
-									hide-bottom-space
-									item-aligned
-								/>
-							</q-item-section>
-						</q-item>
-
-						<q-item>
-							<q-item-section class="non-selectable text-h6">
-								Mean
-							</q-item-section>
-							<q-item-section>
-								<q-input
-									v-model="mean"
-									readonly
-									rounded
-									outlined
-									hide-bottom-space
-									item-aligned
-								/>
-							</q-item-section>
-						</q-item>
-
-						<q-item>
-							<q-item-section class="non-selectable text-h6">
-								Median
-							</q-item-section>
-							<q-item-section>
-								<q-input
-									v-model="median"
-									readonly
-									rounded
-									outlined
-									hide-bottom-space
-									item-aligned
-								/>
-							</q-item-section>
-						</q-item>
-
-						<q-item>
-							<q-item-section class="non-selectable text-h6">
-								Mode
-							</q-item-section>
-							<q-item-section>
-								<q-input
-									v-model="mode"
-									readonly
-									rounded
-									outlined
-									hide-bottom-space
-									item-aligned
-								/>
-							</q-item-section>
-						</q-item>
-
-						<q-item>
-							<q-item-section class="non-selectable text-h6">
-								Range
-							</q-item-section>
-							<q-item-section>
-								<q-input
-									v-model="range"
-									readonly
-									rounded
-									outlined
-									hide-bottom-space
-									item-aligned
-								/>
-							</q-item-section>
-						</q-item>
-
-						<q-item>
-							<q-item-section class="non-selectable text-h6">
-								Variance
-							</q-item-section>
-							<q-item-section>
-								<q-input
-									v-model="variance"
-									readonly
-									rounded
-									outlined
-									hide-bottom-space
-									item-aligned
-								/>
-							</q-item-section>
-						</q-item>
-
-						<q-item>
-							<q-item-section class="non-selectable text-h6">
-								Standard Deviation
-							</q-item-section>
-							<q-item-section>
-								<q-input
-									v-model="standardDeviation"
-									readonly
-									rounded
-									outlined
-									hide-bottom-space
-									item-aligned
-								/>
-							</q-item-section>
-						</q-item>
+						<feature-display-item
+							v-model="count"
+							label="Count"
+						/>
+						<feature-display-item
+							v-model="sum"
+							label="Sum"
+						/>
+						<feature-display-item
+							v-model="mean"
+							label="Mean"
+						/>
+						<feature-display-item
+							v-model="median"
+							label="Median"
+						/>
+						<feature-display-item
+							v-model="mode"
+							label="Mode"
+						/>
+						<feature-display-item
+							v-model="range"
+							label="Range"
+						/>
+						<feature-display-item
+							v-model="variance"
+							label="Variance"
+						/>
+						<feature-display-item
+							v-model="standardDeviation"
+							label="Standard Deviation"
+						/>
 					</q-list>
 				</q-card-section>
 			</q-card>
@@ -270,10 +176,12 @@ const defaultData = [
 export default {
 	name: "PageStatisticalFeature",
 
+	components: { "feature-display-item": () => import("components/FeatureDisplayItem.vue") },
+
 	data() {
 		return {
-			data: defaultData,
-			defaultData,
+			data: this.$deepCopy(defaultData),
+			defaultData: this.$deepCopy(defaultData),
 			defaultValue: 0
 		};
 	},
@@ -377,8 +285,15 @@ export default {
 			this.data.splice(index, 1);
 		},
 
+		restoreData() {
+			this.data = this.$deepCopy(this.defaultData);
+		},
 		sortData() {
-			this.data = this.sortedData;
+			this.data = this.$deepCopy(this.sortedData);
+		},
+
+		copyToClipboard(value) {
+			this.$store.dispatch("window/copyToClipboard", value);
 		}
 	}
 };

@@ -26,7 +26,7 @@
 				<img src="statics/icons/favicon.png">
 			</q-avatar>
 
-			<q-toolbar-title>Statistic Helper</q-toolbar-title>
+			<q-toolbar-title>Statistics Helper</q-toolbar-title>
 		</q-toolbar>
 
 		<q-tabs>
