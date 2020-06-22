@@ -10,5 +10,6 @@ module.exports = {
 	rules: {
 		"sort-imports": o,
 		"import/no-namespace": o,
+		"import/prefer-default-export": o
 	}
 }
