@@ -5,7 +5,9 @@ const routes = [
 		component: () => import("layouts/MainLayout.vue"),
 		children: [
 			{ path: "", component: () => import("pages/Index.vue") },
-			{ path: "/statistical-feature", component: () => import("pages/StatisticalFeatures.vue") }
+			{ path: "/settings", component: () => import("pages/Settings.vue") },
+			{ path: "/statistical-features", component: () => import("pages/StatisticalFeatures.vue") }
+			// { path: "/linear-regression-equation", component: () => import("pages/LinearRegressionEquation") }
 		]
 	}
 ];

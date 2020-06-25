@@ -13,6 +13,10 @@
 				@click="drawerOpened = !drawerOpened"
 			/> -->
 
+			<q-avatar>
+				<img src="statics/icons/favicon.png">
+			</q-avatar>
+
 			<q-chip
 				v-if="debug"
 				v-once
@@ -22,30 +26,35 @@
 				label="Debug"
 			/>
 
-			<q-avatar>
-				<img src="statics/icons/favicon.png">
-			</q-avatar>
-
-			<q-toolbar-title>Statistics Helper</q-toolbar-title>
+			<q-toolbar-title>{{ $t("title") }}</q-toolbar-title>
 		</q-toolbar>
 
 		<q-tabs>
 			<q-route-tab
-				v-for="(to, label) in tabs"
-				:key="label"
-				:to="tabs[label]"
-				:label="label"
+				v-for="i in tabs"
+				:key="i"
+				:to="i"
+				:label="$t(`tabs.${ i }`)"
 			/>
 		</q-tabs>
 	</q-header>
 </template>
 
 <script>
+// import { mapState } from "vuex";
+
 export default {
 	name: "AppHeader",
 
 	data() {
-		return { debug: process.env.NODE_ENV !== "production" };
+		return {
+			debug: process.env.NODE_ENV !== "production",
+
+			tabs: [
+				"/settings", "/", "/statistical-features"
+				// "/linear-regression-equation"
+			]
+		};
 	},
 
 	computed: {
@@ -56,18 +65,9 @@ export default {
 			set(value) {
 				this.$store.commit("window/updateDrawerOpenness", value);
 			}
-		},
-
-		tabs: {
-			get() {
-				return this.$store.state.window.tabs;
-			},
-			set(value) {
-				this.$store.commit("window/updateTabs", value);
-			}
 		}
-	},
 
-	methods: {}
+		// ...mapState("window", { tabs: "tabs" })
+	}
 };
 </script>

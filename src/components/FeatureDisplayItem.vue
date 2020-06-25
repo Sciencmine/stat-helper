@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
 	name: "FeatureDisplayItem",
 
@@ -36,7 +38,8 @@ export default {
 		},
 		value: {
 			type: [String, Number],
-			required: true
+			required: false,
+			default: ""
 		}
 	},
 
@@ -44,10 +47,6 @@ export default {
 		return {};
 	},
 
-	methods: {
-		copyToClipboard(value) {
-			this.$store.dispatch("window/copyToClipboard", value);
-		}
-	}
+	methods: { ...mapActions("window", ["copyToClipboard"]) }
 };
 </script>

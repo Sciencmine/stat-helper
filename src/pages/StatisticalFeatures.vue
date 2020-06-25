@@ -10,7 +10,7 @@
 			>
 				<q-card-section>
 					<span class="non-selectable text-h5">
-						Data
+						{{ $t("statisticalFeatures.data") }}
 					</span>
 					<div class="col float-right">
 						<q-btn
@@ -18,14 +18,14 @@
 							class="on-left"
 							color="accent"
 							icon="autorenew"
-							label="Restore"
+							:label="$t('statisticalFeatures.restore')"
 							@click="restoreData"
 						/>
 						<q-btn
 							rounded
 							color="primary"
 							icon="sort"
-							label="Sort"
+							:label="$t('statisticalFeatures.sort')"
 							@click="sortData"
 						/>
 					</div>
@@ -38,39 +38,14 @@
 
 				<q-card-section>
 					<q-list separator>
-						<q-item
+						<data-input-item
 							v-for="(i, index) in data"
 							:key="index"
-						>
-							<q-item-section
-								thumbnail
-								class="non-selectable"
-							>
-								# {{ index + 1 }}
-							</q-item-section>
-							<q-item-section item-aligned>
-								<q-input
-									v-model.number="data[index]"
-									type="number"
-									outlined
-									rounded
-									clearable
-									hide-bottom-space
-									item-aligned
-									:rules="[validate]"
-									@clear="clearItem(index)"
-								/>
-							</q-item-section>
-							<q-item-section side>
-								<q-btn
-									round
-									:disable="data.length === 1"
-									color="negative"
-									icon="clear"
-									@click="removeItem(index)"
-								/>
-							</q-item-section>
-						</q-item>
+							v-model="i.x"
+							:index="index"
+							:removable="data.length > 1"
+						/>
+
 						<q-item>
 							<q-item-section
 								thumbnail
@@ -116,7 +91,7 @@
 			>
 				<q-card-section>
 					<div class="non-selectable text-h5">
-						Features
+						{{ $t("statisticalFeatures.features") }}
 					</div>
 				</q-card-section>
 				<q-separator
@@ -127,35 +102,35 @@
 					<q-list separator>
 						<feature-display-item
 							v-model="count"
-							label="Count"
+							:label="$t('statisticalFeatures.count')"
 						/>
 						<feature-display-item
 							v-model="sum"
-							label="Sum"
+							:label="$t('statisticalFeatures.sum')"
 						/>
 						<feature-display-item
 							v-model="mean"
-							label="Mean"
+							:label="$t('statisticalFeatures.mean')"
 						/>
 						<feature-display-item
 							v-model="median"
-							label="Median"
+							:label="$t('statisticalFeatures.median')"
 						/>
 						<feature-display-item
 							v-model="mode"
-							label="Mode"
+							:label="$t('statisticalFeatures.mode')"
 						/>
 						<feature-display-item
 							v-model="range"
-							label="Range"
+							:label="$t('statisticalFeatures.range')"
 						/>
 						<feature-display-item
 							v-model="variance"
-							label="Variance"
+							:label="$t('statisticalFeatures.variance')"
 						/>
 						<feature-display-item
 							v-model="standardDeviation"
-							label="Standard Deviation"
+							:label="$t('statisticalFeatures.standardDeviation')"
 						/>
 					</q-list>
 				</q-card-section>
@@ -165,97 +140,48 @@
 </template>
 
 <script>
-const defaultData = [
-	5,
-	3,
-	4,
-	1,
-	2
-];
+import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
-	name: "PageStatisticalFeature",
+	name: "PageStatisticalFeatures",
 
-	components: { "feature-display-item": () => import("components/FeatureDisplayItem.vue") },
+	components: {
+		"data-input-item": () => import("components/DataInputItemSingle.vue"),
+		"feature-display-item": () => import("components/FeatureDisplayItem.vue")
+	},
 
 	data() {
-		return {
-			data: this.$deepCopy(defaultData),
-			defaultData: this.$deepCopy(defaultData),
-			defaultValue: 0
-		};
+		return {};
 	},
 
 	computed: {
-		sortedData() {
-			const newData = this.data.slice();
-
-			newData.sort();
-
-			return newData;
+		data: {
+			get() {
+				return this.$store.state.data.data;
+			},
+			set(value) {
+				this.$store.commit("data/update", value);
+			}
 		},
-		bucket() {
-			return this.sortedData.reduce((accumulator, i) => {
-				if (accumulator[i] === undefined) {
-					accumulator[i] = 1;
-				} else {
-					accumulator[i]++;
-				}
-
-				return accumulator;
-			}, {});
-		},
-		reversedBucket() {
-			return Object.keys(this.bucket).reduce((accumulator, i) => {
-				if (accumulator[this.bucket[i]] === undefined) {
-					accumulator[this.bucket[i]] = [i];
-				} else {
-					accumulator[this.bucket[i]].push(i);
-				}
-
-				return accumulator;
-			}, {});
+		defaultValue: {
+			get() {
+				return this.$store.state.data.defaultValue.x;
+			},
+			set(value) {
+				this.$store.commit("data/updateDefaultValue", { x: value });
+			}
 		},
 
-		count() {
-			return this.data.length;
-		},
-		sum() {
-			return this.data.reduce((accumulator, i) => accumulator + i);
-		},
-		mean() {
-			return this.sum / this.count;
-		},
-		median() {
-			return this.count % 2
-				? this.sortedData[(this.count - 1) / 2]
-				: (this.sortedData[this.count / 2 - 1]
-					+ this.sortedData[this.count / 2])
-					/ 2;
-		},
-		modeList() {
-			const [index] = Object.keys(this.reversedBucket).reverse();
-
-			return this.reversedBucket[index];
-		},
-		mode() {
-			return this.modeList.join(", ");
-		},
-		range() {
-			return this.sortedData[this.count - 1] - this.sortedData[0];
-		},
-		variance() {
-			return (
-				Object.keys(this.bucket).reduce(
-					(accumulator, i) => accumulator
-						+ this.bucket[i] * Math.pow(i - this.mean, 2),
-					0
-				) / this.data.length
-			);
-		},
-		standardDeviation() {
-			return Math.sqrt(this.variance);
-		}
+		...mapGetters("data", {
+			count: "count",
+			sum: "sumX",
+			mean: "meanX",
+			median: "medianX",
+			mode: "modeX",
+			range: "rangeX",
+			variance: "varianceX",
+			standardDeviation: "standardDeviationX"
+		})
 	},
 
 	methods: {
@@ -263,38 +189,15 @@ export default {
 			return typeof value === "number";
 		},
 
-		validateDefaultValue() {
-			if (!this.validate(this.defaultValue)) {
-				this.defaultValue = 0;
-			}
-		},
+		...mapMutations("data", {
+			addItem: "addItem",
+			clearItem: "clearItem",
+			removeItem: "removeItem",
+			sortData: "sort",
+			restoreData: "restore"
+		}),
 
-		addItem() {
-			this.validateDefaultValue();
-
-			this.data.push(this.defaultValue);
-		},
-
-		clearItem(index) {
-			this.validateDefaultValue();
-
-			this.data[index] = this.defaultValue;
-		},
-
-		removeItem(index) {
-			this.data.splice(index, 1);
-		},
-
-		restoreData() {
-			this.data = this.$deepCopy(this.defaultData);
-		},
-		sortData() {
-			this.data = this.$deepCopy(this.sortedData);
-		},
-
-		copyToClipboard(value) {
-			this.$store.dispatch("window/copyToClipboard", value);
-		}
+		...mapActions("window", ["copyToClipboard"])
 	}
 };
 </script>

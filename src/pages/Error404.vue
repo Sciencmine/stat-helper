@@ -7,14 +7,14 @@
 			>
 		</p>
 		<p class="text-faded">
-			Sorry, nothing here...
+			{{ $t("error404.message") }}
 			<strong>(404)</strong>
 		</p>
 		<q-btn
 			id="btn-back"
 			color="secondary"
 			to="/"
-			label="Go back"
+			:label="$t('error404.goBack')"
 		/>
 	</div>
 </template>

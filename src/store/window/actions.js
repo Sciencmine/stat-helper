@@ -1,21 +1,25 @@
-import { copyToClipboard as _copyToClipboard } from "quasar";
+import { copyToClipboard as __copyToClipboard } from "quasar";
 
-export function copyToClipboard({ state, commit }, value) {
-	_copyToClipboard(value)
+const copyPopupStayTime = 1000;
+
+let copyPopupIntervalId = -1;
+
+export function copyToClipboard({ commit }, value) {
+	__copyToClipboard(value)
 		.then(() => {
 			commit("updateCopyPopupVisibility", true);
 
-			if (state.copyPopupIntervalId !== -1) {
-				clearInterval(state.copyPopupIntervalId);
+			if (copyPopupIntervalId !== -1) {
+				clearInterval(copyPopupIntervalId);
 			}
 
-			state.copyPopupIntervalId = setInterval(() => {
+			copyPopupIntervalId = setInterval(() => {
 				commit("updateCopyPopupVisibility", false);
-				clearInterval(state.copyPopupIntervalId);
-				state.copyPopupIntervalId = -1;
-			}, state.copyPopupStayTime);
+				clearInterval(copyPopupIntervalId);
+				copyPopupIntervalId = -1;
+			}, copyPopupStayTime);
 
-			return state.copyPopupIntervalId;
+			return copyPopupIntervalId;
 		})
 		// eslint-disable-next-line no-empty-function
 		.catch(() => { });
