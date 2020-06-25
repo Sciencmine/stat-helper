@@ -1,16 +1,20 @@
 {
 	"params": {
-		"skipTrim": false,
 		"quality": "12",
 		"icon": "src/statics/icons/favicon.png",
-		"padding": [
-			0,
-			0
-		],
+		"themeColor": "1976D2",
 		"include": [
 			"spa",
 			"pwa"
 		]
 	},
-	"assets": []
+	"assets": [
+		{
+			"generator": "png",
+			"name": "favicon-apple-touch.png",
+			"folder": "src/statics/icons",
+			"sizes": [144, 144],
+			"background": true
+		}
+	]
 }

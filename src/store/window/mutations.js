@@ -1,9 +1,9 @@
-export function updateDrawerOpenness(state, opened) {
-	state.drawerOpened = opened;
+export function updateTitle(state, title) {
+	document.title = state.title = title;
 }
 
-export function updateTabs(state, tabs) {
-	state.tabs = tabs;
+export function updateDrawerOpenness(state, opened) {
+	state.drawerOpened = opened;
 }
 
 export function updateCopyPopupVisibility(state, visible) {

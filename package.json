@@ -1,6 +1,6 @@
 {
 	"name": "stat-helper",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"description": "A Tool for Statistics Calculations",
 	"productName": "Statistics Helper",
 	"cordovaId": "tech.sciencmine.stathelper.app",
@@ -28,7 +28,7 @@
 		"@quasar/icongenie": "^2.3.0",
 		"babel-eslint": "^10.0.1",
 		"eslint": "^6.8.0",
-		"eslint-config-lux": "0.0.9",
+		"eslint-config-lux": "0.0.13",
 		"eslint-loader": "^3.0.3",
 		"eslint-plugin-import": "^2.14.0",
 		"eslint-plugin-node": "^11.0.0",

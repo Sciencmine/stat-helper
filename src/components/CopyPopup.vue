@@ -10,7 +10,7 @@
 			color="positive"
 			text-color="white"
 			class="animated non-selectable shadow-1"
-			label="Copied!"
+			:label="$t('copied')"
 		/>
 	</transition>
 </template>

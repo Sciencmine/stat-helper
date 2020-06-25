@@ -5,6 +5,7 @@
 	>
 		<q-toolbar>
 			<q-toolbar-title />
+			<!-- The element above is required for the "align='right'" below to function -->
 			<copy-popup align="right" />
 		</q-toolbar>
 	</q-footer>
