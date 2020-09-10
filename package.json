@@ -17,7 +17,7 @@
 		"icon-ver": "icongenie v -p icongenie-profile.json"
 	},
 	"dependencies": {
-		"@quasar/extras": "^1.0.0",
+		"@quasar/extras": "^1.9.4",
 		"axios": "^0.18.1",
 		"mathjs": "^7.0.1",
 		"quasar": "^1.0.0",
