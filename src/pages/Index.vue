@@ -4,7 +4,7 @@
 		class="flex flex-center"
 	>
 		<img
-			src="statics/icons/favicon.png"
+			src="icons/favicon.png"
 			height="192px"
 			width="192px"
 		>

@@ -1,7 +1,7 @@
 {
 	"params": {
 		"quality": "12",
-		"icon": "src/statics/icons/favicon.png",
+		"icon": "public/icons/favicon.png",
 		"themeColor": "1976D2",
 		"include": [
 			"spa",
@@ -12,8 +12,11 @@
 		{
 			"generator": "png",
 			"name": "favicon-apple-touch.png",
-			"folder": "src/statics/icons",
-			"sizes": [144, 144],
+			"folder": "public/icons",
+			"sizes": [
+				144,
+				144
+			],
 			"background": true
 		}
 	]

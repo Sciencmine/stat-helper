@@ -3,9 +3,5 @@ module.exports = {
 
 	extends: [
 		"lux/quasar"
-	],
-
-	rules: {
-		"import/named": "off"
-	}
+	]
 }

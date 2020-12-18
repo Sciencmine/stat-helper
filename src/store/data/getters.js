@@ -11,7 +11,7 @@ function sort(data) {
 }
 
 function sortX(data) {
-	return data.map(({ x }) => x).sort();
+	return data.map(({ x }) => x).sort((a, b) => a - b);
 }
 
 function bucketX(data) {

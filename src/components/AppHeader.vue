@@ -14,7 +14,7 @@
 			/> -->
 
 			<q-avatar>
-				<img src="statics/icons/favicon.png">
+				<img src="icons/favicon.png">
 			</q-avatar>
 
 			<q-chip

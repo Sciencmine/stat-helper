@@ -1,10 +1,7 @@
 <template>
 	<div class="fixed-center text-center">
 		<p>
-			<img
-				id="img-sad"
-				src="~assets/sad.svg"
-			>
+			<img id="img-sad" src="~assets/sad.svg">
 		</p>
 		<p class="text-faded">
 			{{ $t("error404.message") }}
